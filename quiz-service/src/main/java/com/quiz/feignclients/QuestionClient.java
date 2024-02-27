@@ -1,4 +1,4 @@
-package com.quiz.services;
+package com.quiz.feignclients;
 
 import java.util.List;
 

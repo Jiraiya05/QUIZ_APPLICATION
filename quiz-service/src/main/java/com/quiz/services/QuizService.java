@@ -9,7 +9,7 @@ import com.quiz.entities.Quiz;
 
 public interface QuizService {
 	
-	Quiz add(Quiz quiz) throws JsonProcessingException;
+	Quiz add(Quiz quiz, String userId, String userName) throws JsonProcessingException;
 	
 	List<Quiz> get();
 	

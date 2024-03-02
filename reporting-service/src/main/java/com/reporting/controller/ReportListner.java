@@ -37,13 +37,13 @@ public class ReportListner {
 		JsonNode node = objectMapper.readTree(json);
 		
 		ReportData data = ReportData.builder()
-				.userId(node.get(null).asLong(0))
-				.user(node.get(null).asText("NA"))
-				.quizId(node.get(null).asLong(0))
-				.quizName(node.get(null).asText("NA"))
-				.totalQuestions(node.get(null).asInt(0))
-				.status(node.get(null).asText("NA"))
-				.quizCreationTime(node.get(null).asText("NA"))
+				.userId(node.get("userId").asLong(0))
+				.user(node.get("user").asText("NA"))
+				.quizId(node.get("quizId").asLong(0))
+				.quizName(node.get("quizName").asText("NA"))
+				.totalQuestions(node.get("totalQuestions").asInt(0))
+				.status(node.get("status").asText("NA"))
+				.quizCreationTime(node.get("quizCreationTime").asText("NA"))
 				.lastUpdated(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()))
 				.build();
 		

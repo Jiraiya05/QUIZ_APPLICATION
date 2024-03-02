@@ -3,7 +3,9 @@ package com.result.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.result.entities.ResultData;
@@ -19,25 +21,25 @@ public class ResultController {
 	@Autowired
 	private ResultService service;
 	
-	@GetMapping("/{userId}/{quizId}/{cutOff}/{markPerQuestion}")
-	public GenericResponse<ResultResponse> getResult(@PathVariable Long userId, @PathVariable Long quizId, @PathVariable Integer cutOff, @PathVariable Integer markPerQuestion) throws Exception {
+	@GetMapping("/{quizId}")
+	public GenericResponse<ResultResponse> getResult(@RequestHeader("X-userId") String userId, @PathVariable Long quizId, @RequestParam Integer cutOff, @RequestParam Integer markPerQuestion) throws Exception {
 		
-		ResultResponse processResponse = service.processResponse(userId, quizId, cutOff, markPerQuestion);
+		ResultResponse processResponse = service.processResponse(Long.parseLong(userId), quizId, cutOff, markPerQuestion);
 		
 		return new GenericResponse<>(GenericResponseBody.successBody("Result Fetched successfully"), processResponse);
 	}
 	
-	@GetMapping("/{userId}/{quizId}/{cutOff}/{markPerQuestion}")
-	public GenericResponse<String> downloadResultFile(@PathVariable Long userId, @PathVariable Long quizId, @PathVariable Integer cutOff, @PathVariable Integer markPerQuestion) throws Exception {
-		service.downloadResult(userId, quizId, cutOff, markPerQuestion);
+	@GetMapping("/download/{quizId}")
+	public GenericResponse<String> downloadResultFile(@RequestHeader("X-userId") String userId, @PathVariable Long quizId, @RequestParam Integer cutOff, @RequestParam Integer markPerQuestion) throws Exception {
+		service.downloadResult(Long.parseLong(userId), quizId, cutOff, markPerQuestion);
 		
 		return new GenericResponse<>(GenericResponseBody.successBody("Result file downloaded successfully"), "File downloaded");
 	}
 	
-	@GetMapping("/mongo/{userId}/{quizId}")
-	public GenericResponse<ResultData> getDataFromMongo(@PathVariable Long userId, @PathVariable Long quizId) {
+	@GetMapping("/mongo/{quizId}")
+	public GenericResponse<ResultData> getDataFromMongo(@RequestHeader("X-userId") String userId, @PathVariable Long quizId) {
 		
-		ResultData dataFromMongo = service.getDataFromMongo(userId, quizId);
+		ResultData dataFromMongo = service.getDataFromMongo(Long.parseLong(userId), quizId);
 		
 		return new GenericResponse<ResultData>(GenericResponseBody.successBody("Data from mongo fetched successfully"), dataFromMongo);
 	}

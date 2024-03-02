@@ -62,7 +62,7 @@ public class QuizServiceImpl implements QuizService{
 	}
 
 	@Override
-	public Quiz add(Quiz quiz) throws JsonProcessingException {
+	public Quiz add(Quiz quiz, String userId, String userName) throws JsonProcessingException {
 		
 		log.debug("Add quiz called => DATA : "+quiz.toString());
 		
@@ -71,8 +71,8 @@ public class QuizServiceImpl implements QuizService{
 		log.info("Quiz saved to database");
 		
 		ReportData reportData = ReportData.builder()
-		.userId(null)
-		.user(null)
+		.userId(Long.parseLong(userId))
+		.user(userName)
 		.quizId(save.getId())
 		.quizName(quiz.getTitle())
 		.totalQuestions(null)
@@ -153,7 +153,7 @@ public class QuizServiceImpl implements QuizService{
 		
 		log.info("Answers saved to database");
 		
-		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId).getData();
+		ReportData dataFromMongo = reportClient.getDataFromMongo(String.valueOf(userId), quizId).getData();
 		dataFromMongo.setStatus("ANSWERS UPLOADED");
 		dataFromMongo.setLastUpdated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		
@@ -201,7 +201,7 @@ public class QuizServiceImpl implements QuizService{
 		
 		log.info("Answers successfully evaluated");
 		
-		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId).getData();
+		ReportData dataFromMongo = reportClient.getDataFromMongo(String.valueOf(userId), quizId).getData();
 		dataFromMongo.setStatus("QUESTIONS EVALUATED");
 		dataFromMongo.setLastUpdated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		dataFromMongo.setTotalQuestions(totalQuestions);

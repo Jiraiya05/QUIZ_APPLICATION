@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UploadRequest {
 	
-	private Long userId;
+//	private Long userId;
 	private Long quizId;
 	private String filePath;
 

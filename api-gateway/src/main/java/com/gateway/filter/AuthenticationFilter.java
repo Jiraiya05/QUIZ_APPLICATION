@@ -6,6 +6,9 @@ import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFac
 import org.springframework.http.HttpHeaders;
 import com.gateway.util.JwtUtil;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+
 public class AuthenticationFilter extends AbstractGatewayFilterFactory<AuthenticationFilter.Config>{
 	
 	@Autowired
@@ -45,7 +48,13 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 				try {
 //					template.getForObject("http://AUTH-SERVICE//validate?"+authHeader, String.class);
 					
-					jwtUtil.validateToken(authHeader);
+					Jws<Claims> validateToken = jwtUtil.validateToken(authHeader);
+					
+					exchange.getRequest()
+					.mutate()
+					.header("X-userId", validateToken.getBody().get("X-userId", String.class))
+					.header("X-userName", validateToken.getBody().get("X-userName", String.class))
+					.build();
 						
 				}catch (Exception e) {
 					throw new RuntimeException("Unauthorized access");

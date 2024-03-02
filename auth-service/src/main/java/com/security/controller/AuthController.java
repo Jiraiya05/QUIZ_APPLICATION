@@ -36,7 +36,8 @@ public class AuthController {
 		Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword()));
 		
 		if(authenticate.isAuthenticated()) {
-			return service.generateToken(authRequest.getUserName());
+			UserCredentials principal = (UserCredentials)authenticate.getPrincipal();
+			return service.generateToken(authRequest.getUserName(), String.valueOf(principal.getId()));
 		}else {
 			throw new BadCredentialsException("Invalid credentials");
 		}	

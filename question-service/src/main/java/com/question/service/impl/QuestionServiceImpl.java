@@ -8,7 +8,10 @@ import com.question.entities.Question;
 import com.question.repo.QuestionRepository;
 import com.question.service.QuestionService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class QuestionServiceImpl implements QuestionService{
 	
 	private QuestionRepository questionRepository;
@@ -23,25 +26,48 @@ public class QuestionServiceImpl implements QuestionService{
 	@Override
 	public Question create(Question question) {
 		
-		return questionRepository.save(question);
+		log.debug("Creating question | DATA => "+question.toString());
+		
+		Question save = questionRepository.save(question);
+		
+		log.info("Question saved successfully");
+		
+		return save;
 	}
 
 	@Override
 	public List<Question> get() {
 		
-		return questionRepository.findAll();
+		log.debug("Getting all questions");
+		
+		List<Question> findAll = questionRepository.findAll();
+		
+		log.info("All questions fetched successfully");
+		
+		return findAll;
 	}
 
 	@Override
-	public Question getOne(Long id) {
+	public Question getOne(Long id) throws Exception {
 		
-		return questionRepository.findById(id).orElseThrow(()->new RuntimeException("Question not found"));
+		log.debug("Fetching question for id : "+id);
+		
+		Question question = questionRepository.findById(id).orElseThrow(()->new Exception("Question not found"));
+		
+		log.info("Question successfully fetched with ID : "+id);
+		
+		return question;
 	}
 
 	@Override
 	public List<Question> getQuestionOfQuiz(Long quizId) {
+		log.debug("Getting Questions for Quiz ID : "+quizId);
 		
-		return questionRepository.findByQuizId(quizId);
+		List<Question> findByQuizId = questionRepository.findByQuizId(quizId);
+		
+		log.info("Questions fetched for QuizID : "+quizId);
+		
+		return findByQuizId;
 	}
 
 }

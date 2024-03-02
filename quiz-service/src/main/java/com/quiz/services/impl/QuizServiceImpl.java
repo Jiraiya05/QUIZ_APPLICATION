@@ -2,9 +2,7 @@ package com.quiz.services.impl;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -66,8 +64,11 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public Quiz add(Quiz quiz) throws JsonProcessingException {
 		
+		log.debug("Add quiz called => DATA : "+quiz.toString());
 		
 		Quiz save = quizRepository.save(quiz);
+		
+		log.info("Quiz saved to database");
 		
 		ReportData reportData = ReportData.builder()
 		.userId(null)
@@ -81,7 +82,11 @@ public class QuizServiceImpl implements QuizService{
 		.lastUpdated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
 		.build();
 		
+		log.debug("Sending report data to kafka. => DATA : "+reportData.toString());
+		
 		kafkaTemplate.send(Topics.REPORT_STATUS_TOPIC, objectMapper.writeValueAsString(reportData));
+		
+		log.info("Report data successfully sent to kafka topic");
 		
 		return quizRepository.save(quiz);
 	}
@@ -89,28 +94,40 @@ public class QuizServiceImpl implements QuizService{
 	@Override
 	public List<Quiz> get() {
 		
+		log.debug("Getting all quizes");
+		
 		List<Quiz> quizzes = quizRepository.findAll();
 		
+		log.debug("Setting questions into the quiz");
+		
 		List<Quiz> newQuizList = quizzes.stream().map(a -> {
-			a.setQuestions(questionClient.getQuestionOfQuiz(a.getId()));
+			a.setQuestions(questionClient.getQuestionOfQuiz(a.getId()).getData());
 			return a;
 		}).collect(Collectors.toList());
+		
+		log.info("Quizes fetched successfully");
 		
 		return newQuizList;
 	}
 
 	@Override
-	public Quiz get(Long id) {
+	public Quiz get(Long id) throws Exception {
 		
-		Quiz quiz = quizRepository.findById(id).orElseThrow(()->new RuntimeException("Quiz not found"));
+		log.debug("Getting Quiz by id => "+id);
 		
-		quiz.setQuestions(questionClient.getQuestionOfQuiz(quiz.getId()));
+		Quiz quiz = quizRepository.findById(id).orElseThrow(()->new Exception("No quiz with ID : "+id+" found"));
+		
+		quiz.setQuestions(questionClient.getQuestionOfQuiz(quiz.getId()).getData());
+		
+		log.info("Quiz successfully fetched with id : "+id);
 		
 		return quiz;
 	}
 
 	@Override
-	public void uploadAnswers(Long userId, Long quizId, String filepath) throws FileNotFoundException, IOException {
+	public void uploadAnswers(Long userId, Long quizId, String filepath) throws Exception {
+		
+		log.debug("Uploading answers | Quiz ID : "+quizId+" | User ID : "+userId+" | File Path : "+filepath);
 		
 		List<Integer> answerList = new ArrayList<>();
 		
@@ -121,8 +138,10 @@ public class QuizServiceImpl implements QuizService{
 			}
 			
 		}catch (Exception e) {
-			log.error("Error while uploading the answer file...."+e.getMessage());
+			throw new Exception("Error while reading the answer file");
 		}
+		
+		log.info("Answer file read successfully");
 		
 		UploadedAnswer uploadedAnswer = UploadedAnswer.builder()
 		.quizId(quizId)
@@ -132,29 +151,37 @@ public class QuizServiceImpl implements QuizService{
 		
 		uploadedAnswersRepo.save(uploadedAnswer);
 		
-		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId);
+		log.info("Answers saved to database");
+		
+		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId).getData();
 		dataFromMongo.setStatus("ANSWERS UPLOADED");
 		dataFromMongo.setLastUpdated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		
+		log.debug("Sending report data to kafka | DATA => "+dataFromMongo.toString());
+		
 		kafkaTemplate.send(Topics.REPORT_STATUS_TOPIC, objectMapper.writeValueAsString(dataFromMongo));
+		
+		log.info("Report data successfully sent to kafka topic");
 		
 	}
 
 	@Override
-	public void evaluateAnswers(Long userId, Long quizId) throws JsonProcessingException {
+	public void evaluateAnswers(Long userId, Long quizId) throws Exception {
+		
+		log.debug("Evaluating answers | User ID : "+userId+" | Quiz ID : "+quizId);
 		
 		int totalQuestions=0;
 		int correctQuestions=0;
 		
-		UploadedAnswer uploadedAnswer = uploadedAnswersRepo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new RuntimeException("No answers uploaded yet"));
+		UploadedAnswer uploadedAnswer = uploadedAnswersRepo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new Exception("No answers uploaded yet"));
 		
-		Quiz quiz = quizRepository.findById(quizId).orElseThrow(()->new RuntimeException("No such quiz found"));
+		Quiz quiz = quizRepository.findById(quizId).orElseThrow(()->new Exception("No such quiz found"));
 		
 		List<Question> questions = quiz.getQuestions();
 		
 		List<Integer> answerList = new ArrayList<>();
 		for(Question ques: questions) {
-			answerList.add(answerClient.getAnswerOfQuestion(ques.getQuestionId()).getAnswer());
+			answerList.add(answerClient.getAnswerOfQuestion(ques.getQuestionId()).getData().getAnswer());
 		}
 		
 		if(uploadedAnswer.getSubmittedAnswers().size()==questions.size()) {
@@ -169,16 +196,22 @@ public class QuizServiceImpl implements QuizService{
 			}
 			
 		}else {
-			throw new RuntimeException("Invalid answer sheet for the quiz");
+			throw new Exception("Invalid answer sheet for the quiz");
 		}
 		
-		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId);
+		log.info("Answers successfully evaluated");
+		
+		ReportData dataFromMongo = reportClient.getDataFromMongo(userId, quizId).getData();
 		dataFromMongo.setStatus("QUESTIONS EVALUATED");
 		dataFromMongo.setLastUpdated(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
 		dataFromMongo.setTotalQuestions(totalQuestions);
 		dataFromMongo.setCorrectQuestions(correctQuestions);
 		
+		log.debug("Sending report data to kafka | DATA => "+dataFromMongo.toString());
+		
 		kafkaTemplate.send(Topics.REPORT_STATUS_TOPIC, objectMapper.writeValueAsString(dataFromMongo));
+		
+		log.info("Data successfully sent to kafka topic");
 		
 	}
 

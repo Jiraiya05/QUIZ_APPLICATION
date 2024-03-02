@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.question.entities.Question;
+import com.question.response.GenericResponse;
+import com.question.response.GenericResponseBody;
 import com.question.service.QuestionService;
 
 @RestController
@@ -24,23 +26,27 @@ public class QuestionController {
 	}
 
 	@PostMapping
-	public Question createQuestion(@RequestBody Question question) {
-		return questionService.create(question);
+	public GenericResponse<Question> createQuestion(@RequestBody Question question) {
+		Question create = questionService.create(question);
+		return new GenericResponse<Question>(GenericResponseBody.successBody("Question created successfully"), create);
 	}
 	
 	@GetMapping
-	public List<Question> getAll(){
-		return questionService.get();
+	public GenericResponse<List<Question>> getAll(){
+		List<Question> list = questionService.get();
+		return new GenericResponse<List<Question>>(GenericResponseBody.successBody("All Questions Fetched"), list);
 	}
 	
 	@RequestMapping("/{questionId}")
-	public Question getOne(Long questionId) {
-		return questionService.getOne(questionId);
+	public GenericResponse<Question> getOne(Long questionId) throws Exception {
+		Question question = questionService.getOne(questionId);
+		return new GenericResponse<Question>(GenericResponseBody.successBody("Question fetched for ID : "+questionId), question);
 	}
 	
 	@GetMapping("/quiz/{quizId}")
-	public List<Question> getQuestionsOfQuiz(@PathVariable Long quizId){
-		return questionService.getQuestionOfQuiz(quizId);
+	public GenericResponse<List<Question>> getQuestionsOfQuiz(@PathVariable Long quizId){
+		List<Question> questionOfQuiz = questionService.getQuestionOfQuiz(quizId);
+		return new GenericResponse<List<Question>>(GenericResponseBody.successBody("Questions fetched for Quiz Id : "+quizId), questionOfQuiz);
 	}
 
 }

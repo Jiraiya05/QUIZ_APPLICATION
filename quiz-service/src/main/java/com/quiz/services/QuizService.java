@@ -6,7 +6,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.quiz.entities.Quiz;
-import com.quiz.entities.UploadedAnswer;
 
 public interface QuizService {
 	
@@ -14,10 +13,10 @@ public interface QuizService {
 	
 	List<Quiz> get();
 	
-	Quiz get(Long id);
+	Quiz get(Long id) throws Exception;
 	
-	void uploadAnswers(Long userId, Long quizId, String filepath) throws FileNotFoundException, IOException;
+	void uploadAnswers(Long userId, Long quizId, String filepath) throws FileNotFoundException, IOException, Exception;
 	
-	void evaluateAnswers(Long userId, Long quizId) throws JsonProcessingException;
+	void evaluateAnswers(Long userId, Long quizId) throws JsonProcessingException, Exception;
 
 }

@@ -24,23 +24,33 @@ public class ResultService {
 		this.repo = repo;
 	}
 	
-	public ResultResponse processResponse(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) {
-		ResultData resultData = repo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new RuntimeException("No result to be displayed"));
+	public ResultResponse processResponse(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) throws Exception {
 		
-		return ResultResponse.builder()
-				.quizId(quizId)
-				.userId(userId)
-				.userName(null)
-				.quizName(resultData.getQuizName())
-				.quizCreationTime(resultData.getQuizCreationTime())
-				.resultTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
-				.totalMarks(resultData.getTotalQuestions()*markPerQuestion)
-				.receivedMarks(resultData.getCorrectQuestions()*markPerQuestion)
-				.resultStatus((resultData.getCorrectQuestions()*markPerQuestion)>=cutOff ? "PASS" : "FAIL")
-				.build();
+		log.debug("Processing Response for result | User ID : "+userId+" | Quiz ID : "+quizId);
+		
+		ResultData resultData = repo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new Exception("No result to be displayed"));
+		
+		ResultResponse resultResponse = ResultResponse.builder()
+		.quizId(quizId)
+		.userId(userId)
+		.userName(null)
+		.quizName(resultData.getQuizName())
+		.quizCreationTime(resultData.getQuizCreationTime())
+		.resultTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
+		.totalMarks(resultData.getTotalQuestions()*markPerQuestion)
+		.receivedMarks(resultData.getCorrectQuestions()*markPerQuestion)
+		.resultStatus((resultData.getCorrectQuestions()*markPerQuestion)>=cutOff ? "PASS" : "FAIL")
+		.build();
+		
+		log.info("Result Fetched successfully");
+		
+		return resultResponse;
 	}
 	
-	public void downloadResult(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) {
+	public void downloadResult(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) throws Exception {
+		
+		log.debug("Downloading Result | User ID : "+userId+" | Quiz ID : "+quizId);
+		
 		ResultResponse processResponse = this.processResponse(userId, quizId, cutOff, markPerQuestion);
 		
 		try(BufferedWriter writer = new BufferedWriter(new FileWriter("RESULT_"+userId+"_"+quizId+".txt"))){
@@ -66,12 +76,16 @@ public class ResultService {
 			writer.write("RESULT STATUS\t:\t"+processResponse.getResultStatus());
 			
 		}catch (Exception e) {
-			log.error("Error while writing the result file...."+e.getMessage());
+			throw new Exception("Error while writing Result file");
 		}
+		
+		log.info("Result file written successfully");
 	}
 	
 	public ResultData getDataFromMongo(Long userId, Long quizId) {
+		log.debug("Getting mongo data | User ID : "+userId+" | Quiz ID : "+quizId);
 		ResultData resultData = repo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new RuntimeException("No data found"));
+		log.info("Mongo data fetched successfully");
 		return resultData;
 	}
 

@@ -30,7 +30,7 @@ public class AnswerController {
 	}
 	
 	@GetMapping("/{questionId}")
-	public GenericResponse<Answer> getAnswer(Long questionId) throws Exception {
+	public GenericResponse<Answer> getAnswer(@PathVariable Long questionId) throws Exception {
 		Answer answer = service.getAnswer(questionId);
 		return new GenericResponse<Answer>(GenericResponseBody.successBody("Answer Fetched for Question ID : "+questionId), answer);
 	}

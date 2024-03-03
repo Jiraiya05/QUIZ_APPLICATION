@@ -1,0 +1,169 @@
+2024-03-04T00:03:39.790+05:30  INFO 14184 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:08:39.826+05:30  INFO 14184 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:13:39.834+05:30  INFO 14184 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:18:39.838+05:30  INFO 14184 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:23:39.841+05:30  INFO 14184 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:23:59.741+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-03-04T00:23:59.751+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application API-GATEWAY with eureka with status DOWN
+2024-03-04T00:23:59.751+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1709492039751, current=DOWN, previous=UP]
+2024-03-04T00:23:59.752+05:30  INFO 14184 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085: registering service...
+2024-03-04T00:23:59.762+05:30  INFO 14184 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085 - registration status: 204
+2024-03-04T00:24:01.859+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2024-03-04T00:24:04.876+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2024-03-04T00:24:04.882+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085 - deregister  status: 200
+2024-03-04T00:24:04.949+05:30  INFO 14184 --- [RMI TCP Connection(206)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2024-03-04T00:34:08.181+05:30  INFO 36508 --- [main] com.gateway.ApiGatewayApplication        : Starting ApiGatewayApplication using Java 17.0.3 with PID 36508 (E:\JAVA FILES\QuizApplication\api-gateway\target\classes started by NAKESH in E:\JAVA FILES\QuizApplication\api-gateway)
+2024-03-04T00:34:08.183+05:30  INFO 36508 --- [main] com.gateway.ApiGatewayApplication        : No active profile set, falling back to 1 default profile: "default"
+2024-03-04T00:34:09.024+05:30  INFO 36508 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=7393acb4-158e-3548-a389-1e4a8c3c2ef2
+2024-03-04T00:34:09.084+05:30  INFO 36508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-04T00:34:09.085+05:30  INFO 36508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-04T00:34:09.087+05:30  INFO 36508 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2024-03-04T00:34:10.501+05:30  INFO 36508 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2024-03-04T00:34:10.789+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2024-03-04T00:34:10.790+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2024-03-04T00:34:10.791+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2024-03-04T00:34:10.791+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2024-03-04T00:34:10.791+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2024-03-04T00:34:10.791+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2024-03-04T00:34:10.791+05:30  INFO 36508 --- [main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2024-03-04T00:34:12.046+05:30  INFO 36508 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2024-03-04T00:34:13.211+05:30  INFO 36508 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2024-03-04T00:34:13.245+05:30  INFO 36508 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint(s) beneath base path '/actuator'
+2024-03-04T00:34:13.403+05:30  INFO 36508 --- [main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2024-03-04T00:34:13.426+05:30  WARN 36508 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2024-03-04T00:34:13.479+05:30  INFO 36508 --- [main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2024-03-04T00:34:13.517+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2024-03-04T00:34:13.521+05:30  INFO 36508 --- [main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:34:13.544+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2024-03-04T00:34:13.544+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2024-03-04T00:34:13.544+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2024-03-04T00:34:13.545+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2024-03-04T00:34:13.545+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2024-03-04T00:34:13.545+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2024-03-04T00:34:13.545+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2024-03-04T00:34:13.836+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2024-03-04T00:34:13.841+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2024-03-04T00:34:13.847+05:30  INFO 36508 --- [main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2024-03-04T00:34:13.858+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1709492653858 with initial instances count: 1
+2024-03-04T00:34:13.860+05:30  INFO 36508 --- [main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application API-GATEWAY with eureka with status UP
+2024-03-04T00:34:13.861+05:30  INFO 36508 --- [main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1709492653861, current=UP, previous=STARTING]
+2024-03-04T00:34:13.862+05:30  INFO 36508 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085: registering service...
+2024-03-04T00:34:13.901+05:30  INFO 36508 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085 - registration status: 204
+2024-03-04T00:34:14.034+05:30  INFO 36508 --- [main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8085
+2024-03-04T00:34:14.035+05:30  INFO 36508 --- [main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8085
+2024-03-04T00:34:15.138+05:30  INFO 36508 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2024-03-04T00:34:16.246+05:30  INFO 36508 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2024-03-04T00:34:16.273+05:30  INFO 36508 --- [main] com.gateway.ApiGatewayApplication        : Started ApiGatewayApplication in 9.492 seconds (process running for 10.097)
+2024-03-04T00:39:13.564+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:44:13.576+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:49:13.586+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:54:13.590+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T00:57:42.786+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:45.277+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:46.318+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:47.304+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:48.183+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:49.165+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:50.180+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:51.614+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:52.676+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:53.841+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:55.406+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:56.433+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:57.313+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:58.037+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:58.774+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:57:59.498+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:58:00.207+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:58:00.960+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:58:04.108+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:58:05.376+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:58:06.450+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T00:59:13.597+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:04:13.608+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:09:13.612+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:10:18.738+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:21.871+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:23.034+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:24.068+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:25.161+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:26.172+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:38.055+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:39.616+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:40.976+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:41.931+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:43.078+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:44.142+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:10:45.281+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T01:14:13.628+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:19:13.638+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:24:13.641+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:29:13.652+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:43:13.262+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:48:13.273+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:53:13.279+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T01:58:13.283+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:01:02.961+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T02:01:07.515+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T02:03:13.297+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:08:13.303+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:13:13.312+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:18:13.328+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:23:13.332+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:28:13.336+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:33:13.347+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:38:13.354+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:43:13.376+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:43:59.598+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:48:13.387+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:49:31.523+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:49:35.185+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:49:36.602+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:49:38.072+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:49:39.026+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T02:53:13.404+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T02:58:13.424+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:03:13.442+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:07:04.564+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T03:07:07.391+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: QUIZ-SERVICE
+2024-03-04T03:08:13.465+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:13:13.479+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:18:13.496+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:23:13.509+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:28:13.520+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:33:13.530+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:38:13.541+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:43:13.560+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:48:13.577+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:53:13.582+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T03:58:13.586+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:03:13.593+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:08:13.607+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:13:13.621+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:18:13.626+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:23:13.639+05:30  INFO 36508 --- [AsyncResolver-bootstrap-executor-0] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2024-03-04T04:25:02.057+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:08.022+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:09.598+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:10.692+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:11.810+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:12.846+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:13.966+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:15.214+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:25:16.388+05:30  WARN 36508 --- [reactor-http-nio-3] o.s.c.l.core.RoundRobinLoadBalancer      : No servers available for service: RESULT-SERVICE
+2024-03-04T04:28:00.018+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2024-03-04T04:28:00.030+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application API-GATEWAY with eureka with status DOWN
+2024-03-04T04:28:00.030+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1709506680030, current=DOWN, previous=UP]
+2024-03-04T04:28:00.031+05:30  INFO 36508 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085: registering service...
+2024-03-04T04:28:00.040+05:30  INFO 36508 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085 - registration status: 204
+2024-03-04T04:28:02.090+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2024-03-04T04:28:05.116+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2024-03-04T04:28:05.130+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/localhost:API-GATEWAY:8085 - deregister  status: 200
+2024-03-04T04:28:05.256+05:30  INFO 36508 --- [RMI TCP Connection(238)-127.0.0.1] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

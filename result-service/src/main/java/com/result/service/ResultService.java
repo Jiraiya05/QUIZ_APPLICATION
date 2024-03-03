@@ -4,10 +4,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.result.entities.ResultData;
+import com.result.entities.ResultEntity;
+import com.result.repo.ResultEntityRepo;
 import com.result.repo.ResultRepo;
 import com.result.response.ResultResponse;
 
@@ -18,13 +22,16 @@ import lombok.extern.slf4j.Slf4j;
 public class ResultService {
 	
 	private ResultRepo repo;
+	
+	@Autowired
+	private ResultEntityRepo resultEntityRepo;
 
 	public ResultService(ResultRepo repo) {
 		super();
 		this.repo = repo;
 	}
 	
-	public ResultResponse processResponse(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) throws Exception {
+	public ResultResponse processResponse(Long userId, String userName, Long quizId, Integer cutOff, Integer markPerQuestion) throws Exception {
 		
 		log.debug("Processing Response for result | User ID : "+userId+" | Quiz ID : "+quizId);
 		
@@ -33,7 +40,7 @@ public class ResultService {
 		ResultResponse resultResponse = ResultResponse.builder()
 		.quizId(quizId)
 		.userId(userId)
-		.userName(null)
+		.userName(userName)
 		.quizName(resultData.getQuizName())
 		.quizCreationTime(resultData.getQuizCreationTime())
 		.resultTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
@@ -47,13 +54,13 @@ public class ResultService {
 		return resultResponse;
 	}
 	
-	public void downloadResult(Long userId, Long quizId, Integer cutOff, Integer markPerQuestion) throws Exception {
+	public void downloadResult(Long userId, String userName,  Long quizId, Integer cutOff, Integer markPerQuestion, String filePath) throws Exception {
 		
 		log.debug("Downloading Result | User ID : "+userId+" | Quiz ID : "+quizId);
 		
-		ResultResponse processResponse = this.processResponse(userId, quizId, cutOff, markPerQuestion);
+		ResultResponse processResponse = this.processResponse(userId, userName, quizId, cutOff, markPerQuestion);
 		
-		try(BufferedWriter writer = new BufferedWriter(new FileWriter("RESULT_"+userId+"_"+quizId+".txt"))){
+		try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
 			
 			writer.write("RESULT FOR USER : "+processResponse.getUserName()+" AND QUIZ NAME : "+processResponse.getQuizName());
 			writer.newLine();
@@ -77,6 +84,29 @@ public class ResultService {
 			
 		}catch (Exception e) {
 			throw new Exception("Error while writing Result file");
+		}
+		
+		Optional<ResultEntity> findByUserIdAndQuizId = resultEntityRepo.findByUserIdAndQuizId(userId, quizId);
+		
+		ResultEntity resultEntity = ResultEntity.builder()
+		.userId(processResponse.getUserId())
+		.userName(processResponse.getUserName())
+		.quizId(processResponse.getQuizId())
+		.quizName(processResponse.getQuizName())
+		.quizCreationTime(processResponse.getQuizCreationTime())
+		.resultTime(processResponse.getResultTime())
+		.totalMarks(processResponse.getTotalMarks())
+		.receivedMarks(processResponse.getReceivedMarks())
+		.resultStatus(processResponse.getResultStatus())
+		.build();
+		
+		
+		if(!findByUserIdAndQuizId.isPresent()) {
+			resultEntityRepo.save(resultEntity);
+		}else {
+			resultEntity.setId(findByUserIdAndQuizId.get().getId());
+			resultEntity.setResultStatus("UPDATED : "+processResponse.getResultStatus());
+			resultEntityRepo.save(resultEntity);
 		}
 		
 		log.info("Result file written successfully");

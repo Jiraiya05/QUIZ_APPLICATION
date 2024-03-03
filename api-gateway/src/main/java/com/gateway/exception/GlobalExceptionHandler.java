@@ -37,5 +37,26 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<GenericResponse>(response, HttpStatus.BAD_REQUEST);
 		
 	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ExceptionHandler(RuntimeException.class)
+	public ResponseEntity<GenericResponse> customRunTimeException(RuntimeException exception){
+		
+		log.error("Some error occured | MESSAGE => "+exception.getMessage());
+		
+		String message = "FAILURE";
+		
+		GenericResponse response = new GenericResponse();
+		response.setData(null);
+		response.setResponse(GenericResponseBody.builder()
+				.date(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
+				.status(message)
+				.description(exception.getMessage())
+				.build()
+				);
+		
+		return new ResponseEntity<GenericResponse>(response, HttpStatus.BAD_REQUEST);
+		
+	}
 
 }

@@ -51,9 +51,9 @@ public class QuestionServiceImpl implements QuestionService{
 	public Question getOne(Long id) throws Exception {
 		
 		log.debug("Fetching question for id : "+id);
-		
+		log.warn("Getting question for id : "+id);
 		Question question = questionRepository.findById(id).orElseThrow(()->new Exception("Question not found"));
-		
+		log.warn("The required question is : "+question.toString());
 		log.info("Question successfully fetched with ID : "+id);
 		
 		return question;

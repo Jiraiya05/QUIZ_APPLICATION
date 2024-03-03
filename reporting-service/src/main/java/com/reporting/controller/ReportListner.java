@@ -2,6 +2,7 @@ package com.reporting.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -42,12 +43,19 @@ public class ReportListner {
 				.quizId(node.get("quizId").asLong(0))
 				.quizName(node.get("quizName").asText("NA"))
 				.totalQuestions(node.get("totalQuestions").asInt(0))
+				.correctQuestions(node.get("correctQuestions").asInt(0))
 				.status(node.get("status").asText("NA"))
 				.quizCreationTime(node.get("quizCreationTime").asText("NA"))
 				.lastUpdated(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()))
 				.build();
+		Optional<ReportData> findByUserIdAndQuizId = repository.findByUserIdAndQuizId(data.getUserId(), data.getQuizId());
+		if(findByUserIdAndQuizId.isPresent()) {
+			data.setId(findByUserIdAndQuizId.get().getId());
+			repository.save(data);
+		}else {
+			repository.insert(data);
+		}
 		
-		repository.save(data);
 				
 		log.info("Status updated => USER ID : "+data.getUserId()+" | QUIZ ID : "+data.getQuizId()+"QUIZ NAME"+data.getQuizName());
 	}

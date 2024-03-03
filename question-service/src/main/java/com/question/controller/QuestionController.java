@@ -37,8 +37,8 @@ public class QuestionController {
 		return new GenericResponse<List<Question>>(GenericResponseBody.successBody("All Questions Fetched"), list);
 	}
 	
-	@RequestMapping("/{questionId}")
-	public GenericResponse<Question> getOne(Long questionId) throws Exception {
+	@GetMapping("/{questionId}")
+	public GenericResponse<Question> getOne(@PathVariable Long questionId) throws Exception {
 		Question question = questionService.getOne(questionId);
 		return new GenericResponse<Question>(GenericResponseBody.successBody("Question fetched for ID : "+questionId), question);
 	}

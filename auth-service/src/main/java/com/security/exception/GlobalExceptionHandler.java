@@ -23,6 +23,8 @@ public class GlobalExceptionHandler {
 		
 		log.error("Some error occured | MESSAGE => "+exception.getMessage());
 		
+		exception.printStackTrace();
+		
 		String message = "FAILURE";
 		
 		GenericResponse response = new GenericResponse();

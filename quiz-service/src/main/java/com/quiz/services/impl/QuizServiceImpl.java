@@ -133,11 +133,14 @@ public class QuizServiceImpl implements QuizService{
 		
 		try(BufferedReader reader = new BufferedReader(new FileReader(new File(filepath)))){
 			String line;
-			while(!(line=reader.readLine()).isBlank() && (line=reader.readLine())!=null) {
-				answerList.add(Integer.parseInt(line));
+			while((line=reader.readLine())!=null) {
+				if(!line.trim().isEmpty()) {
+				answerList.add(Integer.parseInt(line.trim()));
+				}
 			}
 			
 		}catch (Exception e) {
+			e.printStackTrace();
 			throw new Exception("Error while reading the answer file");
 		}
 		
@@ -175,9 +178,15 @@ public class QuizServiceImpl implements QuizService{
 		
 		UploadedAnswer uploadedAnswer = uploadedAnswersRepo.findByUserIdAndQuizId(userId, quizId).orElseThrow(()->new Exception("No answers uploaded yet"));
 		
-		Quiz quiz = quizRepository.findById(quizId).orElseThrow(()->new Exception("No such quiz found"));
+//		Quiz quiz = quizRepository.findById(quizId).orElseThrow(()->new Exception("No such quiz found"));
+//		
+//		System.out.println("quiz => "+quiz.toString());
 		
-		List<Question> questions = quiz.getQuestions();
+//		List<Question> questions = quiz.getQuestions();
+		
+		List<Question> questions = questionClient.getQuestionOfQuiz(quizId).getData();
+		
+		System.out.println("questions => "+questions);
 		
 		List<Integer> answerList = new ArrayList<>();
 		for(Question ques: questions) {
@@ -187,7 +196,8 @@ public class QuizServiceImpl implements QuizService{
 		if(uploadedAnswer.getSubmittedAnswers().size()==questions.size()) {
 			
 			for(int i=0; i<questions.size(); i++) {
-				if(uploadedAnswer.getSubmittedAnswers().get(i)==answerList.get(i)) {
+				System.out.println("up : "+uploadedAnswer.getSubmittedAnswers().get(i)+"\t|\tans : "+answerList.get(i));
+				if(uploadedAnswer.getSubmittedAnswers().get(i).equals(answerList.get(i))) {
 					totalQuestions++;
 					correctQuestions++;
 				}else {

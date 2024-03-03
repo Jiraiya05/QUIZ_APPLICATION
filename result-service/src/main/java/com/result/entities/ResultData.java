@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 public class ResultData {
 	
 	@Id
+	private String id;
 	private Long userId;
 	private String user;
 	private Long quizId;

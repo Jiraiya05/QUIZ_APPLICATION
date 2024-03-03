@@ -24,6 +24,7 @@ public class AuthConfig {
 		return new CustomUserDetailService();
 	}
 	
+	
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -53,7 +54,7 @@ public class AuthConfig {
 		authenticationProvider.setUserDetailsService(userDetailsService());
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
 		
-		return authenticationProvider();
+		return authenticationProvider;
 		
 	}
 }

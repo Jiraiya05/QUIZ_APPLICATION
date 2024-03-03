@@ -11,6 +11,6 @@ import com.quiz.utility.ReportData;
 @FeignClient(name = "RESULT-SERVICE")
 public interface MongoReportClient {
 	
-	@GetMapping("/mongo/{quizId}")
+	@GetMapping("/result/mongo/{quizId}")
 	GenericResponse<ReportData> getDataFromMongo(@RequestHeader("X-userId") String userId, @PathVariable Long quizId);
 }

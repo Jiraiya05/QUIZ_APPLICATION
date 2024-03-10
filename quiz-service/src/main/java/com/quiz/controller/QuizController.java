@@ -1,5 +1,6 @@
 package com.quiz.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,12 @@ import com.quiz.response.GenericResponse;
 import com.quiz.response.GenericResponseBody;
 import com.quiz.services.QuizService;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/quiz")
+@Slf4j
 public class QuizController {
 	
 	private QuizService quizService;
@@ -38,6 +43,7 @@ public class QuizController {
 	}
 	
 	@GetMapping
+	@CircuitBreaker(name = "FETCH_ALL_QUIZES", fallbackMethod = "getAllQuizFallback")
 	public GenericResponse<List<Quiz>> get(){
 		List<Quiz> list = quizService.get();
 		
@@ -45,6 +51,7 @@ public class QuizController {
 	}
 	
 	@GetMapping("/{id}")
+	@CircuitBreaker(name = "FETCH_QUIZ_BY_ID", fallbackMethod = "getAllQuizFallback")
 	public GenericResponse<Quiz> getOne(@PathVariable Long id) throws Exception {
 		Quiz quiz = quizService.get(id);
 		return new GenericResponse<Quiz>(GenericResponseBody.successBody("QUIZ FETCHED WITH ID : "+id), quiz);
@@ -52,6 +59,7 @@ public class QuizController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PostMapping("/upload")
+	@CircuitBreaker(name = "UPLOAD_ANSWERS", fallbackMethod = "uploadAnswersFallback")
 	public GenericResponse uploadAnswers(@RequestBody UploadRequest request, @RequestHeader("X-userId") String userId) throws Exception {
 		quizService.uploadAnswers(Long.parseLong(userId), request.getQuizId(), request.getFilePath());
 		
@@ -60,10 +68,40 @@ public class QuizController {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/evaluate")
+	@CircuitBreaker(name = "EVALUATE_ANSWERS", fallbackMethod = "evaluateAnswersFallback")
 	public GenericResponse evaluateAnswers(@RequestHeader("X-userId") String userId, @RequestParam Long quizId) throws Exception {
 		quizService.evaluateAnswers(Long.parseLong(userId), quizId);
 		
 		return new GenericResponse(GenericResponseBody.successBody("ANSWERS EVALUATED"), HttpStatus.OK);
+	}
+	
+	//CIRCUIT-BREAKERS
+	
+	public GenericResponse<List<Quiz>> getAllQuizFallback(Exception exception){
+		
+		log.error("FALLBACK EXECUTED | MESSAGE => "+exception.getMessage());
+		
+		List<Quiz> quizes = new ArrayList<>();
+		
+		return new GenericResponse<List<Quiz>>(GenericResponseBody.failBody("Something went wrong"), quizes);
+		
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public GenericResponse uploadAnswersFallback(@RequestBody UploadRequest request, @RequestHeader("X-userId") String userId, Exception exception) {
+		
+		log.error("FALLBACK EXECUTED | MESSAGE => "+exception.getMessage());
+		
+		return new GenericResponse(GenericResponseBody.failBody("Something went wrong"), HttpStatus.SERVICE_UNAVAILABLE);
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public GenericResponse evaluateAnswersFallback(@RequestHeader("X-userId") String userId, @RequestParam Long quizId, Exception exception) {
+		
+		log.error("FALLBACK EXECUTED | MESSAGE => "+exception.getMessage());
+		
+		return new GenericResponse(GenericResponseBody.failBody("Something went wrong"), HttpStatus.SERVICE_UNAVAILABLE);
+		
 	}
 
 }
